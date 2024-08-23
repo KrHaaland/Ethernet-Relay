@@ -10,3 +10,6 @@ Ethernet is a W5500-module brought from aliexpress, a 24LC512 for storing the we
 The mqtt topic postfix is "/relay1/set" and "/relay2/set" for turing the relays on or off, and "/relay1" or "/relay2" for getting the current status of the relays, the staus will be published according to update time set in the web-interface.
 
 
+
+</br><br></br><br></br><br>
+![3D Render of PCB](3drender.png)

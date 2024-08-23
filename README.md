@@ -16,3 +16,15 @@ The mqtt topic postfix is "/relay1/set" and "/relay2/set" for turing the relays 
 
 </br><br></br><br></br><br>
 ![3D Render of case](pics/3drender_case.png)
+
+</br><br></br><br></br><br>
+![Web Interface](pics/webinterface.png)
+
+</br><br></br><br></br><br>
+![PCB](pics/pcb.png)
+
+</br><br></br><br></br><br>
+![Case 1](pics/case1.png)
+
+</br><br></br><br></br><br>
+![Case 2](pics/case2.png)

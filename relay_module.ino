@@ -19,6 +19,7 @@ supply ethernet module and relays!
 #include <avr/io.h>
 
 // MAC address for your Ethernet shield
+// BE SURE TO ALSO CHANGE MQTT CLIENT ID and serial output !!
 //byte mac[] = { 0x02, 0x79, 0xFB, 0x22, 0x8C, 0x10 };  // First produced module
 byte mac[] = { 0x0E, 0x97, 0xBF, 0xCF, 0x2F, 0x95 };  // Second produced module
 #define W5500_CS   PIN_PD4
@@ -52,6 +53,7 @@ void restartMicrocontroller() {
 
 // Function to connect to MQTT server
 void connectToMqtt() {
+  mqttClient.loop();
   char mqttServer[64];
   retrieveFromEEPROM2(32, mqttServer, sizeof(mqttServer));
   Serial.print(F("mqtt: "));
@@ -60,7 +62,7 @@ void connectToMqtt() {
 
   while (!mqttClient.connected()) {
     Serial.println(F("Connecting to MQTT..."));
-    if (mqttClient.connect("arduinoClient")) {
+    if (mqttClient.connect("0E97BFCF2F95")) {
       Serial.println(F("Connected to MQTT"));
 
       // Subscribe to topics
@@ -604,15 +606,16 @@ void setup() {
   server.begin();
   Serial.print(F("Ethernet local IP is "));
   Serial.println(Ethernet.localIP());
+  Serial.println("Mac addr is: 0E:97:BF:CF:2F:95");
 
-    // Set the MQTT server and callback
-    char mqttServer[64];
-    retrieveFromEEPROM2(32, mqttServer, sizeof(mqttServer));
-    mqttClient.setServer(mqttServer, 1883);
-    mqttClient.setCallback(callback);
+  // Set the MQTT server and callback
+  char mqttServer[64];
+  retrieveFromEEPROM2(32, mqttServer, sizeof(mqttServer));
+  mqttClient.setServer(mqttServer, 1883);
+  mqttClient.setCallback(callback);
 
-    // Connect to MQTT
-    connectToMqtt();
+  // Connect to MQTT
+  connectToMqtt();
 }
 
 void loop() {
